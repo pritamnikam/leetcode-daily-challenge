@@ -73,4 +73,22 @@ public:
 } // namespace
 
 void testBinaryTreeLevelOrderTraversal() {
+    // Input: root = [3,9,20,null,null,15,7]
+    // Output: [[3],[9,20],[15,7]]
+    TreeNode* root = new TreeNode(3, 
+                                  new TreeNode(9, nullptr, nullptr), 
+                                  new TreeNode(20, 
+                                               new TreeNode(15, nullptr, nullptr), 
+                                               new TreeNode(7, nullptr, nullptr)));
+    
+    vector<vector<int>> result = Solution().levelOrder(root);
+    
+    
+    // Input: root = [1]
+    // Output: [[1]]
+    result = Solution().levelOrder(new TreeNode(1));
+    
+    // Input: root = []
+    // Output: []
+    result = Solution().levelOrder(nullptr);
 }
