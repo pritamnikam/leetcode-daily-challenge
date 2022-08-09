@@ -51,6 +51,7 @@ namespace {
 
             ListNode* current = head;
             ListNode* prev = nullptr;
+            ListNode* next = nullptr;
             int count = 0;
 
             // Make sure we have enough nodes to reverse
@@ -66,15 +67,15 @@ namespace {
             current = head;
             count = 0;
             while (count != k && current) {
-                ListNode* next = current;
+                next = current;
                 current->next = prev;
                 prev = current;
                 current = next;
                 ++count;
             }
             // Recurrsively reverse all group of size k
-            if (head->next) {
-                head->next = reverseKGroup(head->next, k);
+            if (next) {
+                head->next = reverseKGroup(next, k);
             }
 
             return prev;
