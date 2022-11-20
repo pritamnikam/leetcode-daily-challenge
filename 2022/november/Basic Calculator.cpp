@@ -56,35 +56,28 @@ namespace {
     class Solution {
     public:
         int calculate(string s) {
+            // Use stack
+            // We have 5 cases: '+', '-', '(', ')' and number.
+
+            // when ( -> push to stack
+            // when ) -> pop from stack
+
             stack<int> stack;
             int sum = 0;
             int sign = 1;
 
             for (int i = 0; i < s.length(); ++i) {
-                // we have 5 cases:
-                // 1. number
-                if (s[i] >= '0' and s[i] <= '9') {
-                    int num = 0;
-                    while (i < s.length() and s[i] >= '0' and s[i] <= '9') {
-                        num = num * 10 + (s[i] - '0');
-                        ++i;
-                    }
-
-                    sum += num * sign;
-                    --i;
-                }
-
-                // 2. +
-                else if (s[i] == '+') {
+                // case: '+'
+                if (s[i] == '+') {
                     sign = 1;
                 }
 
-                // 3. -
+                // case 2: '-'
                 else if (s[i] == '-') {
                     sign = -1;
                 }
 
-                // 4. (
+                // case 3: '('
                 else if (s[i] == '(') {
                     stack.push(sum);
                     stack.push(sign);
@@ -93,21 +86,33 @@ namespace {
                     sign = 1;
                 }
 
-                // 5. )
+                // case 4: ')'
                 else if (s[i] == ')') {
-                    sum = sum * stack.top();
-                    stack.pop();
-
-                    sum += stack.top();
-                    stack.pop();
+                    sum = sum * stack.top(); stack.pop();
+                    sum = sum + stack.top(); stack.pop();
                 }
-            }
 
+                // case 5: number
+                else {
+                    int number = 0;
+                    while (i < s.length()
+                        and s[i] >= '0'
+                        and s[i] <= '9') {
+                        number = number * 10 + (s[i] - '0');
+                        ++i;
+                    }
+
+                    sum = sum + number * sign;
+                    --i;
+                }
+            } // for
             return sum;
         }
     };
 }  // namespace
 
 void testBasicCalculator() {
-    cout << "Basic Calculator: " << Solution().calculate("(1+(4+5+2)-3)+(6+8)") << endl;
+    cout << "Basic Calculator: " 
+        << Solution().calculate("(1+(4+5+2)-3)+(6+8)") 
+        << endl;
 }
