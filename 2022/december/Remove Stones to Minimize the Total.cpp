@@ -71,10 +71,10 @@ namespace {
 
 } // namespace
 
-void test() {
+void testRemoveStonesToMinimizeTheTotal() {
 	/*
 	* Example 1: Input: piles = [5,4,9], k = 2, Output: 12
 	*/
-	vector<int>& piles = { 5, 4, 9 }; int k = 2;
+	vector<int> piles = { 5, 4, 9 }; int k = 2;
 	cout << "Remove Stones to Minimize the Total: " << Solution().minStoneSum(piles, k) << endl;
 }
