@@ -41,8 +41,9 @@ namespace {
 	class Solution {
 	public:
 		string gcdOfStrings(string str1, string str2) {
+			// __gcd for C++17
 			return (str1 + str2 == str2 + str1)
-				? str1.substr(0, gcd(size(str1), size(str2)))
+				? str1.substr(0, __gcd(size(str1), size(str2)))
 				: "";
 		}
 	};
