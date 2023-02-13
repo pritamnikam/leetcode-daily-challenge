@@ -33,6 +33,17 @@ namespace {
             int range = (high - low);
             return range / 2 + ((high % 2) || (low % 2));
         }
+
+        int countOdds2(int low, int high) {
+            // If low is even, make it odd.
+            if (!(low & 1)) {
+                low++;
+            }
+
+            // low could become greater than high due to incrementation
+            // if it is, the answer is 0; otherwise, use the formula.
+            return low > high ? 0 : (high - low) / 2 + 1;
+        }
     };
 }
 
