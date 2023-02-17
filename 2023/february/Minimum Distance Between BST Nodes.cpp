@@ -42,9 +42,9 @@ namespace {
         TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {}
     };
 
-	class Solution {
-	public:
-		int minDiffInBST(TreeNode* root) {
+class Solution {
+     public:
+	int minDiffInBST(TreeNode* root) {
             if (root == nullptr)
                 return 0;
 
@@ -56,8 +56,8 @@ namespace {
                 result = min(result, values[i] - values[i - 1]);
             }
 
-            return result;
-		}
+    	    return result;
+	}
 
     private:
         void Inorder(TreeNode* root, vector<int>& values) {
@@ -68,7 +68,7 @@ namespace {
             values.push_back(root->val);
             Inorder(root->right, values);
         }
-	};
+   };
 }  // namespace
 
 
