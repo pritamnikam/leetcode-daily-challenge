@@ -32,23 +32,26 @@ using namespace std;
 #include <algorithm>
 
 namespace {
-	class Solution {
-	public:
-		double average(vector<int>& salary) {
-			if (salary.size() <= 2) return 0;
+    class Solution {
+    public:
+        double average(vector<int>& salaries) {
+            int minSalary = INT_MAX;
+            int maxSalary = INT_MIN;
+            int sum = 0;
 
-			long sum = salary[0];
-			int lo = salary[0], hi = salary[0];
+            for (int salary : salaries) {
+                // Sum of all the salaries.
+                sum += salary;
+                // Update the minimum salary.
+                minSalary = min(minSalary, salary);
+                // Update the maximum salary.
+                maxSalary = max(maxSalary, salary);
+            }
 
-			for (int i = 1; i < salary.size(); ++i) {
-				sum += salary[i];
-				lo = min(lo, salary[i]);
-				hi = max(hi, salary[i]);
-			}
-
-			return (sum - lo - hi) / (salary.size() - 2);
-		}		
-	};
+            // Divide the sum by total size - 2, as we exclude minimum and maximum values.
+            return (double)(sum - minSalary - maxSalary) / (double)(salaries.size() - 2);
+        }
+    };
 
 } // namespace
 
