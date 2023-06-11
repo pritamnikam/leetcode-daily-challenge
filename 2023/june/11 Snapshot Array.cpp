@@ -35,42 +35,38 @@ using namespace std;
 
 #include <iostream>
 #include <vector>
-#include <unordered_map>
+#include <algorithm>
 
 
 namespace {
     class SnapshotArray {
     public:
-        int snapshotID;
-
-        // array of {map of {snapshot-id & value}}
-        vector<unordered_map<int, int>> snapshots;
-
+        int snapId;
+	// list { list {<snapshot_id, value>} }
+        vector<vector<pair<int, int>>> historyRecords;
         SnapshotArray(int length) {
-            snapshotID = 0;
-            snapshots = vector<unordered_map<int, int>>(length);
+            snapId = 0;
+            historyRecords.resize(length);
+            for (int i = 0; i < length; ++i) {
+                historyRecords[i].push_back(make_pair(0, 0));
+            }
         }
 
         void set(int index, int val) {
-            snapshots[index][snapshotID] = val;
+            historyRecords[index].push_back(make_pair(snapId, val));
         }
 
         int snap() {
-            snapshotID++;
-            return snapshotID - 1;
+            return snapId++;
         }
 
         int get(int index, int snap_id) {
-            unordered_map<int, int> map = snapshots[index];
-            while (snap_id >= 0) {
-                if (map.count(snap_id)) {
-                    return map[snap_id];
-                }
+            auto it = upper_bound(
+                historyRecords[index].begin(), 
+                historyRecords[index].end(),
+                make_pair(snap_id, INT_MAX));
 
-                --snap_id;
-            }
-
-            return 0;
+            return prev(it)->second;
         }
     };
 
