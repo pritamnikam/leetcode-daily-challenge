@@ -1,0 +1,34 @@
+// 657. Palindromic Substrings
+// https://leetcode.com/problems/palindromic-substrings
+
+class Solution {
+public:
+    int countSubstrings(string s) {
+        int n = s.length(), ans = 0;
+        t = s;
+
+        for (int i = 0; i < n; i++) {
+            ans += check(i, i);
+            ans += check(i, i + 1);
+        }
+        return ans;
+    }
+
+private:
+    string t;
+
+    int check(
+        int l,
+        int r,
+        int ans = 0
+    ) {
+        while (l >= 0 && r <= t.size()) {
+            if (t[l--] == t[r++]) {
+                ++ans;
+            } else {
+                break;
+            }
+        }
+        return ans;
+    }
+};
