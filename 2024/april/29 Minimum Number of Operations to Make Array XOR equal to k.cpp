@@ -3,6 +3,15 @@
 
 class Solution {
 public:
+    int minOperations2(vector<int>& nums, int k) {
+        int finalXor = 0;
+        for (int n : nums) {
+            finalXor = finalXor ^ n;
+        }
+        // returns the number of set bits in finalXor
+        return __builtin_popcount(finalXor ^ k);
+    }
+
     int minOperations(vector<int>& nums, int k) {
         int finalXor = 0, count = 0;
 
