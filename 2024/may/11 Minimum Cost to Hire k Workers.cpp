@@ -1,5 +1,5 @@
 // 857. Minimum Cost to Hire k Workers
-//
+// https://leetcode.com/problems/minimum-cost-to-hire-k-workers/
 
 class Solution {
     public:
