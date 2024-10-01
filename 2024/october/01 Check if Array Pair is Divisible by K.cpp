@@ -10,7 +10,7 @@ public:
         for (int i: arr) {
             remainderCount[(i % k + k) % k]++;
         }
-        for (auto i : arr) {
+        for (auto& i: arr) {
             int rem = (i % k + k) % k;
 
             // If the remainder for an element is 0, then the count
