@@ -1,4 +1,4 @@
-// total-characters-in-string-after-transformations-ii
+// 3337. total-characters-in-string-after-transformations-ii
 // https://leetcode.com/problems/total-characters-in-string-after-transformations-ii/
 
 const MOD: i64 = 1_000_000_007;
