@@ -1,4 +1,4 @@
-//
+// count-partitions-with-max-min-difference-at-most-k
 // https://leetcode.com/problems/count-partitions-with-max-min-difference-at-most-k/
 
 use std::collections::VecDeque;
